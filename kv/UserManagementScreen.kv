@@ -1,0 +1,214 @@
+<UserManagementScreen>:
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(15)
+        spacing: dp(10)
+
+        canvas.before:
+            Color:
+                rgba: 0.035, 0.045, 0.04, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            size_hint: 1, 0.1
+            text: app.get_translation("user_management")
+            id: user_management_text
+            font_size: "24sp"
+            bold: True
+            color: app.accent_color
+            halign: "center"
+            valign: "middle"
+            text_size: self.size
+
+            canvas.before:
+                Color:
+                    rgba: 0.01, 0.01, 0.01, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(10)]
+
+            canvas.after:
+                Color:
+                    rgba: app.accent_color
+                Line:
+                    width: 1.2
+                    rounded_rectangle:
+                        self.x, self.y, self.width, self.height, dp(10)
+
+        BoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            spacing: dp(10)
+
+            Label:
+                id: choose_user_text
+                size_hint: 0.3, 1
+                text: app.get_translation("choose_user")
+                color: 0.9, 1, 0.92, 1
+                font_size: "18sp"
+                bold: True
+                halign: "left"
+                valign: "middle"
+                text_size: self.size
+
+            Spinner:
+                values: root.usernames
+                id: username_list
+                size_hint: 0.5, 1
+                background_normal: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                color: app.accent_color
+                font_size: "18sp"
+                bold: True
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(8)
+
+        BoxLayout:
+            size_hint: 1, 0.1
+
+        BoxLayout:
+            size_hint: 1, 0.6
+
+            BoxLayout:
+                size_hint: 0.15, 1
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint: 0.7, 1
+                padding: dp(15)
+                spacing: dp(10)
+
+                canvas.before:
+                    Color:
+                        rgba: 0.055, 0.07, 0.06, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(12)
+
+                Label:
+                    id: options_text
+                    text: app.get_translation("options")
+                    size_hint_y: 0.15
+                    font_size: "20sp"
+                    bold: True
+                    color: app.accent_color
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size
+
+                Button:
+                    id: button_change_pass
+                    text: app.get_translation("change_pass")
+                    on_release: root.ChangePassword()
+                    background_normal: ""
+                    background_down: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    color: 0.9, 1, 0.92, 1
+                    font_size: "17sp"
+                    bold: True
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+                Button:
+                    id: button_change_permissions
+                    text: app.get_translation("change_permissions")
+                    on_release: root.ChangePermissions()
+                    background_normal: ""
+                    background_down: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    color: 0.9, 1, 0.92, 1
+                    font_size: "17sp"
+                    bold: True
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+                Button:
+                    id: button_delete_user
+                    text: app.get_translation("delete_user")
+                    on_release: root.DeleteUser()
+                    background_normal: ""
+                    background_down: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    color: 1, 0.3, 0.3, 1
+                    font_size: "17sp"
+                    bold: True
+
+                    canvas.after:
+                        Color:
+                            rgba: 0.8, 0.2, 0.2, 1
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+                Button:
+                    id: button_add_user
+                    text: app.get_translation("add_user")
+                    on_press: root.AddUser()
+                    background_normal: ""
+                    background_down: ""
+                    background_color: app.accent_color
+                    color: 0.02, 0.05, 0.03, 1
+                    font_size: "17sp"
+                    bold: True
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+            BoxLayout:
+                size_hint: 0.2, 1
+
+        Button:
+            size_hint: 1, 0.1
+            id: button_cancel
+            text: app.get_translation("cancel")
+            on_press: root.GetBack()
+            background_normal: ""
+            background_down: ""
+            background_color: 0.01, 0.01, 0.01, 1
+            color: 0.9, 1, 0.92, 1
+            font_size: "18sp"
+            bold: True
+
+            canvas.after:
+                Color:
+                    rgba: app.accent_color
+                Line:
+                    width: 1.2
+                    rounded_rectangle:
+                        self.x, self.y, self.width, self.height, dp(10)

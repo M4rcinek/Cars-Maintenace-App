@@ -1,0 +1,66 @@
+<CustomPopup>:
+    separator_color: app.accent_color
+    size_hint: 0.5, 0.5
+    title: app.get_translation("confirm")
+    auto_dismiss: True
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+
+        Label:
+            id: custom_label
+            color: 0.9, 1, 0.92, 1
+            font_size: "20sp"
+            halign: "center"
+            valign: "middle"
+            text_size: self.size
+
+            canvas.before:
+                Color:
+                    rgba: 0.01, 0.01, 0.01, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(10)]
+
+        BoxLayout:
+            size_hint_y: 0.3
+            spacing: dp(10)
+
+            Button:
+                id: yes
+                background_normal: ""
+                background_down: ""
+                background_color: app.accent_color
+                color: 0.02, 0.05, 0.03, 1
+                font_size: "20sp"
+                bold: True
+                on_release: root.on_yes()
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+            Button:
+                id: no
+                background_normal: ""
+                background_down: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                color: 0.9, 1, 0.92, 1
+                font_size: "20sp"
+                bold: True
+                on_release: root.on_no()
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)

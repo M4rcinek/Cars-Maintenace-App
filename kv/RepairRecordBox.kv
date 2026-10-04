@@ -1,0 +1,52 @@
+<RepairRecordBox>:
+    canvas.before:
+        Color:
+            rgba: 0.055, 0.07, 0.06, 1
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [dp(12)]
+
+        Color:
+            rgba: app.accent_color
+        Line:
+            rounded_rectangle:
+                self.x, self.y, self.width, self.height, dp(12)
+            width: 1.2
+
+    BoxLayout:
+        orientation: "horizontal"
+        padding: dp(12)
+        spacing: dp(15)
+
+        BoxLayout:
+            size_hint_x: 0.18
+            padding: dp(5)
+
+        BoxLayout:
+            size_hint_x: 0.57
+            padding: dp(10), 0
+
+            Label:
+                id: car_text
+                text: root.text
+                font_size: "24sp"
+                bold: True
+                color: app.accent_color
+                halign: "left"
+                valign: "middle"
+                text_size: self.size
+
+        BoxLayout:
+            size_hint_x: 0.25
+            padding: dp(5)
+
+            Button:
+                id: car_button
+                text: app.get_translation("show_repair_details")
+                font_size: "16sp"
+                bold: True
+                background_normal: ""
+                background_color: app.accent_color
+                color: 0.02, 0.05, 0.03, 1
+                on_release: root.ShowRepairInfo()

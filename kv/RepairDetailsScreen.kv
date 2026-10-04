@@ -1,0 +1,300 @@
+<RepairDetailsScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.035, 0.045, 0.04, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(15)
+        spacing: dp(10)
+
+        BoxLayout:
+            size_hint: 1, 0.4
+            orientation: "vertical"
+            spacing: dp(5)
+
+            Label:
+                id: repair_type_value
+                font_size: "24sp"
+                bold: True
+                color: app.accent_color
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+                canvas.before:
+                    Color:
+                        rgba: 0.01, 0.01, 0.01, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(10)]
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+            Label:
+                id: description_value
+                font_size: "20sp"
+                color: 0.9, 1, 0.92, 1
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+                canvas.before:
+                    Color:
+                        rgba: 0.01, 0.01, 0.01, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(10)]
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: 1, 0.5
+            spacing: dp(8)
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(10)
+
+                Label:
+                    id: cost_text
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("cost")
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: cost_value
+                    disabled: True
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_background_color: 0.01, 0.01, 0.01, 1
+                    foreground_color: app.accent_color
+                    disabled_foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+                    padding: dp(12), dp(8)
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(10)
+
+                Label:
+                    id: mileage_text
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("mileage")
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: mileage_value
+                    disabled: True
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_background_color: 0.01, 0.01, 0.01, 1
+                    foreground_color: app.accent_color
+                    disabled_foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+                    padding: dp(12), dp(8)
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(10)
+
+                Label:
+                    id: repair_date_text
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("repair_date")
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: repair_date_value
+                    disabled: True
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_background_color: 0.01, 0.01, 0.01, 1
+                    foreground_color: app.accent_color
+                    disabled_foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+                    padding: dp(12), dp(8)
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(10)
+
+                Label:
+                    id: part_number_text
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("part_number")
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: part_number_value
+                    disabled: True
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_background_color: 0.01, 0.01, 0.01, 1
+                    foreground_color: app.accent_color
+                    disabled_foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+                    padding: dp(12), dp(8)
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(10)
+
+                Label:
+                    id: reg_number_text
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("reg_number")
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: reg_number_value
+                    disabled: True
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_background_color: 0.01, 0.01, 0.01, 1
+                    foreground_color: app.accent_color
+                    disabled_foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+                    padding: dp(12), dp(8)
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(8)
+
+        BoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            spacing: dp(10)
+
+            Button:
+                id: button_delete
+                text: app.get_translation("delete")
+                background_normal: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                color: 1, 0.3, 0.3, 1
+                font_size: "17sp"
+                bold: True
+                on_release: root.DeleteRepair()
+
+                canvas.after:
+                    Color:
+                        rgba: 0.8, 0.2, 0.2, 1
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+            Button:
+                id: button_edit
+                text: app.get_translation("edit")
+                background_normal: ""
+                background_color: app.accent_color
+                color: 0.02, 0.05, 0.03, 1
+                font_size: "17sp"
+                bold: True
+                on_release: root.EditRepairData()
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+            Button:
+                id: button_cancel
+                text: app.get_translation("cancel")
+                background_normal: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                color: 0.9, 1, 0.92, 1
+                font_size: "17sp"
+                bold: True
+                on_release: root.GetBack()
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)

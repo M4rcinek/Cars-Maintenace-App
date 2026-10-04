@@ -1,0 +1,673 @@
+<SettingsScreen>:
+
+    canvas.before:
+        Color:
+            rgba: 0.035, 0.045, 0.04, 1
+
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+
+    BoxLayout:
+
+        orientation: "vertical"
+
+        padding: dp(30)
+        spacing: dp(20)
+
+
+        # ==========================================================
+        # TITLE
+        # ==========================================================
+
+        BoxLayout:
+
+            size_hint_y: 0.10
+
+            Label:
+                id: settings_title
+
+                text: app.get_translation("settings")
+
+                font_size: "28sp"
+                bold: True
+
+                color: app.accent_color
+
+                halign: "left"
+                valign: "middle"
+
+                text_size: self.size
+
+
+        # ==========================================================
+        # MAIN CONTENT
+        # ==========================================================
+
+        BoxLayout:
+
+            size_hint_y: 0.75
+
+            spacing: dp(25)
+
+
+            # ======================================================
+            # COLOR
+            # ======================================================
+
+            BoxLayout:
+
+                orientation: "vertical"
+
+                size_hint_x: 0.5
+
+                padding: dp(20)
+                spacing: dp(15)
+
+
+                canvas.before:
+
+                    Color:
+                        rgba: 0.055, 0.07, 0.06, 1
+
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+
+                    Color:
+                        rgba: app.accent_color
+
+                    Line:
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(12)
+
+                        width: 1.2
+
+
+                Label:
+
+                    id: interface
+
+                    text: app.get_translation("interface_color")
+
+                    size_hint_y: 0.10
+
+                    font_size: "18sp"
+                    bold: True
+
+                    color: app.accent_color
+
+                    halign: "left"
+                    valign: "middle"
+
+                    text_size: self.size
+
+
+                ColorPicker:
+
+                    id: color_picker
+
+                    size_hint_y: 0.90
+
+                    color: app.accent_color
+
+                    on_color:
+                        root.ChangeColor(self, self.color)
+
+
+            # ======================================================
+            # RIGHT SIDE
+            # ======================================================
+
+            BoxLayout:
+
+                orientation: "vertical"
+
+                size_hint_x: 0.5
+
+                spacing: dp(20)
+
+
+                # ==================================================
+                # LANGUAGE
+                # ==================================================
+
+                BoxLayout:
+
+                    orientation: "vertical"
+
+                    size_hint_y: 0.28
+
+                    padding: dp(20)
+                    spacing: dp(10)
+
+
+                    canvas.before:
+
+                        Color:
+                            rgba: 0.055, 0.07, 0.06, 1
+
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(12)]
+
+
+                        Color:
+                            rgba: app.accent_color
+
+                        Line:
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(12)
+
+                            width: 1.2
+
+
+                    Label:
+
+                        id: language
+
+                        text: app.get_translation("language")
+
+                        size_hint_y: 0.40
+
+                        font_size: "18sp"
+                        bold: True
+
+                        color: app.accent_color
+
+                        halign: "left"
+                        valign: "middle"
+
+                        text_size: self.size
+
+
+                    Spinner:
+
+                        id: language_input
+
+                        text: app.lang
+
+                        values: ["en", "pl"]
+
+                        size_hint_y: 0.45
+
+                        font_size: "16sp"
+
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+
+                        color: app.accent_color
+
+                        bold: True
+
+                        on_text:
+                            root.ChangeLanguage(self.text)
+
+
+                        canvas.after:
+
+                            Color:
+                                rgba: app.accent_color
+
+                            Line:
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                                width: 1.2
+
+
+                # ==================================================
+                # DATABASE
+                # ==================================================
+
+                ScrollView:
+
+                    size_hint_y: 0.72
+
+                    do_scroll_x: False
+                    do_scroll_y: True
+
+                    bar_width: dp(6)
+
+                    scroll_type: ["bars", "content"]
+
+
+                    BoxLayout:
+
+                        orientation: "vertical"
+
+                        size_hint_y: None
+                        height: self.minimum_height
+
+                        padding: dp(20)
+                        spacing: dp(8)
+
+
+                        canvas.before:
+
+                            Color:
+                                rgba: 0.055, 0.07, 0.06, 1
+
+                            RoundedRectangle:
+                                pos: self.pos
+                                size: self.size
+                                radius: [dp(12)]
+
+
+                            Color:
+                                rgba: app.accent_color
+
+                            Line:
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(12)
+
+                                width: 1.2
+
+
+                        Label:
+
+                            id: database
+
+                            text: app.get_translation("database")
+
+                            size_hint_y: None
+                            height: dp(30)
+
+                            font_size: "18sp"
+                            bold: True
+
+                            color: app.accent_color
+
+                            halign: "left"
+                            valign: "middle"
+
+                            text_size: self.size
+
+
+                        # HOST
+
+                        Label:
+
+                            id: host_label
+
+                            text: app.get_translation("database_host")
+
+                            size_hint_y: None
+                            height: dp(22)
+
+                            color: 0.9, 1, 0.92, 1
+
+                            halign: "left"
+
+                            text_size: self.size
+
+
+                        Spinner:
+
+                            id: database_input
+
+                            text: "127.0.0.1"
+
+                            values: ["127.0.0.1"]
+
+                            size_hint_y: None
+                            height: dp(40)
+
+                            font_size: "15sp"
+
+                            background_normal: ""
+                            background_color: 0.01, 0.01, 0.01, 1
+
+                            color: app.accent_color
+
+                            halign: "left"
+
+
+                            canvas.after:
+
+                                Color:
+                                    rgba: app.accent_color
+
+                                Line:
+                                    rounded_rectangle:
+                                        self.x, self.y, self.width, self.height, dp(8)
+
+                                    width: 1.2
+
+
+                        # PORT
+
+                        Label:
+
+                            id: port_label
+
+                            text: app.get_translation("database_port")
+
+                            size_hint_y: None
+                            height: dp(22)
+
+                            color: 0.9, 1, 0.92, 1
+
+                            halign: "left"
+
+                            text_size: self.size
+
+
+                        TextInput:
+
+                            id: port_input
+
+                            text: "3306"
+
+                            multiline: False
+
+                            size_hint_y: None
+                            height: dp(40)
+
+                            padding: dp(10)
+
+                            font_size: "15sp"
+
+                            foreground_color: app.accent_color
+                            cursor_color: app.accent_color
+
+                            background_normal: ""
+                            background_active: ""
+
+                            background_color: 0.01, 0.01, 0.01, 1
+
+
+                            canvas.after:
+
+                                Color:
+                                    rgba: app.accent_color
+
+                                Line:
+                                    rounded_rectangle:
+                                        self.x, self.y, self.width, self.height, dp(8)
+
+                                    width: 1.2
+
+
+                        # USER
+
+                        Label:
+
+                            id: user_label
+
+                            text: app.get_translation("database_user")
+
+                            size_hint_y: None
+                            height: dp(22)
+
+                            color: 0.9, 1, 0.92, 1
+
+                            halign: "left"
+
+                            text_size: self.size
+
+
+                        TextInput:
+
+                            id: user_input
+
+                            text: "sql"
+
+                            multiline: False
+
+                            size_hint_y: None
+                            height: dp(40)
+
+                            padding: dp(10)
+
+                            font_size: "15sp"
+
+                            foreground_color: app.accent_color
+                            cursor_color: app.accent_color
+
+                            background_normal: ""
+                            background_active: ""
+
+                            background_color: 0.01, 0.01, 0.01, 1
+
+
+                            canvas.after:
+
+                                Color:
+                                    rgba: app.accent_color
+
+                                Line:
+                                    rounded_rectangle:
+                                        self.x, self.y, self.width, self.height, dp(8)
+
+                                    width: 1.2
+
+
+                        # PASSWORD
+
+                        Label:
+
+                            id: password_label
+
+                            text: app.get_translation("database_password")
+
+                            size_hint_y: None
+                            height: dp(22)
+
+                            color: 0.9, 1, 0.92, 1
+
+                            halign: "left"
+
+                            text_size: self.size
+
+
+                        TextInput:
+
+                            id: password_input
+
+                            text: "sql"
+
+                            multiline: False
+
+                            password: True
+
+                            size_hint_y: None
+                            height: dp(40)
+
+                            padding: dp(10)
+
+                            font_size: "15sp"
+
+                            foreground_color: app.accent_color
+                            cursor_color: app.accent_color
+
+                            background_normal: ""
+                            background_active: ""
+
+                            background_color: 0.01, 0.01, 0.01, 1
+
+
+                            canvas.after:
+
+                                Color:
+                                    rgba: app.accent_color
+
+                                Line:
+                                    rounded_rectangle:
+                                        self.x, self.y, self.width, self.height, dp(8)
+
+                                    width: 1.2
+
+
+                        # DATABASE NAME
+
+                        Label:
+
+                            id: database_name_label
+
+                            text: app.get_translation("database_name")
+
+                            size_hint_y: None
+                            height: dp(22)
+
+                            color: 0.9, 1, 0.92, 1
+
+                            halign: "left"
+
+                            text_size: self.size
+
+
+                        TextInput:
+
+                            id: database_name_input
+
+                            text: "car_maintenance"
+
+                            multiline: False
+
+                            size_hint_y: None
+                            height: dp(40)
+
+                            padding: dp(10)
+
+                            font_size: "15sp"
+
+                            foreground_color: app.accent_color
+                            cursor_color: app.accent_color
+
+                            background_normal: ""
+                            background_active: ""
+
+                            background_color: 0.01, 0.01, 0.01, 1
+
+
+                            canvas.after:
+
+                                Color:
+                                    rgba: app.accent_color
+
+                                Line:
+                                    rounded_rectangle:
+                                        self.x, self.y, self.width, self.height, dp(8)
+
+                                    width: 1.2
+
+
+                        # SCAN BUTTON
+
+                        Button:
+
+                            id: button_scan
+
+                            text: app.get_translation("scan")
+
+                            size_hint_y: None
+                            height: dp(40)
+
+                            font_size: "15sp"
+                            bold: True
+
+                            color: 0.02, 0.05, 0.03, 1
+
+                            background_normal: ""
+                            background_color: app.accent_color
+
+                            on_release:
+                                root.FindDatabases()
+
+
+                            canvas.after:
+
+                                Color:
+                                    rgba: app.accent_color
+
+                                Line:
+                                    rounded_rectangle:
+                                        self.x, self.y, self.width, self.height, dp(8)
+
+                                    width: 1.2
+
+
+        # ==========================================================
+        # BOTTOM BUTTONS
+        # ==========================================================
+
+        BoxLayout:
+
+            size_hint_y: 0.15
+
+            spacing: dp(15)
+
+
+            Widget:
+
+
+            Button:
+
+                id: button_save
+
+                text: app.get_translation("save")
+
+                size_hint_x: 0.20
+
+                font_size: "17sp"
+                bold: True
+
+                color: 0.02, 0.05, 0.03, 1
+
+                background_normal: ""
+                background_color: app.accent_color
+
+                on_release:
+                    root.SaveSettings()
+
+
+                canvas.after:
+
+                    Color:
+                        rgba: app.accent_color
+
+                    Line:
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+                        width: 1.2
+
+
+            Button:
+
+                id: button_cancel
+
+                text: app.get_translation("cancel")
+
+                size_hint_x: 0.20
+
+                font_size: "17sp"
+                bold: True
+
+                color: 0.85, 0.9, 0.87, 1
+
+                background_normal: ""
+                background_color: 0.12, 0.15, 0.13, 1
+
+                on_release:
+                    root.GetBack()
+
+
+                canvas.after:
+
+                    Color:
+                        rgba: app.accent_color
+
+                    Line:
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+                        width: 1.2
+
+
+            Widget:

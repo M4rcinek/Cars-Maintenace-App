@@ -1,0 +1,175 @@
+<MainScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.035, 0.045, 0.04, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # =================================
+        # CUSTOM TITLE BAR
+        # =================================
+
+        BoxLayout:
+            size_hint_y: None
+            height: dp(35)
+
+            CustomTitleBar:
+                id: custom_title_bar
+
+
+        # =================================
+        # MAIN CONTENT
+        # =================================
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: dp(30)
+            spacing: dp(20)
+
+            # HEADER
+
+            BoxLayout:
+                size_hint_y: 0.16
+                spacing: dp(20)
+
+                BoxLayout:
+                    orientation: "horizontal"
+                    size_hint_x: 0.25
+                    spacing: dp(10)
+
+                    Button:
+                        text: "="
+                        font_size: "22sp"
+                        bold: True
+                        color: app.accent_color
+                        background_normal: ""
+                        background_color: 0.055, 0.07, 0.06, 1
+                        on_release: root.ShowDropdown(self)
+
+                        canvas.before:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(12)
+                                width: 1.2
+
+                    Button:
+                        text: "*"
+                        font_size: "22sp"
+                        bold: True
+                        color: app.accent_color
+                        background_normal: ""
+                        background_color: 0.055, 0.07, 0.06, 1
+                        on_release: root.OpenSettingsWindow()
+
+                        canvas.before:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(12)
+                                width: 1.2
+
+                BoxLayout:
+                    size_hint_x: 0.5
+                    padding: dp(10)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0.055, 0.07, 0.06, 1
+                        RoundedRectangle:
+                            pos: self.pos
+                            size: self.size
+                            radius: [dp(12)]
+
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(12)
+                            width: 1.2
+
+                    Image:
+                        source: "media/logo.png"
+                        allow_stretch: True
+                        keep_ratio: True
+
+                Widget:
+                    size_hint_x: 0.25
+
+
+            # SEARCH
+
+            BoxLayout:
+                size_hint_y: 0.10
+
+                TextInput:
+                    id: input
+                    hint_text: app.get_translation("search")
+
+                    multiline: False
+                    padding: dp(15), dp(12)
+
+                    font_size: "16sp"
+
+                    foreground_color: 0.9, 1, 0.92, 1
+                    hint_text_color: 0.2, 1, 0.45, 0.45
+
+                    background_normal: ""
+                    background_active: ""
+                    background_color: 0.055, 0.07, 0.06, 1
+
+                    cursor_color: app.accent_color
+
+                    on_text: root.ids.car_panel.SearchCars(self.text)
+
+                    canvas.before:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(12)
+
+
+            # CAR PANEL
+
+            BoxLayout:
+                size_hint_y: 0.69
+
+                canvas.before:
+                    Color:
+                        rgba: 0.055, 0.07, 0.06, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(12)]
+
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(12)
+                        width: 1.2
+
+                CarPanel:
+                    id: car_panel
+                    size_hint: 1, 1
+
+
+            # FOOTER
+
+            BoxLayout:
+                size_hint_y: 0.05
+
+                Label:
+                    text: "V 1.1.0  •  by Marcin Klimczyk"
+                    font_size: "12sp"
+                    color: app.accent_color
+                    halign: "center"
+                    valign: "middle"
+                    text_size: self.size

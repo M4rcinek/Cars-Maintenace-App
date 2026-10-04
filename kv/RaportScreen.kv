@@ -1,0 +1,590 @@
+<RaportScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.035, 0.045, 0.04, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(15)
+        spacing: dp(10)
+
+        Label:
+            id: criteria
+            size_hint: 1, 0.1
+            text: app.get_translation("provide_criteria")
+            color: app.accent_color
+            font_size: "22sp"
+            bold: True
+            halign: "center"
+            valign: "middle"
+            text_size: self.size
+
+            canvas.before:
+                Color:
+                    rgba: 0.01, 0.01, 0.01, 1
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [dp(10)]
+
+            canvas.after:
+                Color:
+                    rgba: app.accent_color
+                Line:
+                    width: 1.2
+                    rounded_rectangle:
+                        self.x, self.y, self.width, self.height, dp(10)
+
+        BoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            spacing: dp(20)
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(8)
+
+                CheckBox:
+                    id: pojazdy
+                    size_hint: 0.2, 1
+                    on_active: if self.active: naprawy.active = False
+
+                Label:
+                    id: vehicles
+                    text: app.get_translation("vehicles")
+                    size_hint: 0.8, 1
+                    color: 0.9, 1, 0.92, 1
+                    font_size: "18sp"
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.size
+
+            BoxLayout:
+                orientation: 'horizontal'
+                spacing: dp(8)
+
+                CheckBox:
+                    id: naprawy
+                    size_hint: 0.2, 1
+                    on_active: if self.active: pojazdy.active = False
+
+                Label:
+                    id: repairs
+                    text: app.get_translation("repairs")
+                    size_hint: 0.8, 1
+                    color: 0.9, 1, 0.92, 1
+                    font_size: "18sp"
+                    halign: 'left'
+                    valign: 'middle'
+                    text_size: self.size
+
+        BoxLayout:
+            size_hint: 1, 0.1
+            padding: dp(5), 0
+
+            Spinner:
+                id: vehicle
+                text: app.get_translation("choose_vehicle")
+                size_hint: (1, None)
+                height: dp(50)
+                background_normal: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                color: app.accent_color
+                font_size: "17sp"
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+        FloatLayout:
+            size_hint: 1, 0.6
+
+            BoxLayout:
+                pos_hint: {"x": 0.0, "top": 1} if pojazdy.active else {"x": 1.0, "top": 0}
+                size_hint: 1, 1
+                spacing: dp(10)
+                orientation: 'vertical'
+                opacity: 1 if pojazdy.active else 0
+                disabled: not pojazdy.active
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        id: make_text
+                        text: app.get_translation("make")
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_marka
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: make_value
+                        hint_text: app.get_translation("provide_make")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        id: model_text
+                        text: "Model:"
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_model
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: model_value
+                        hint_text: app.get_translation("provide_model")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("displacement")
+                        id: displacement_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_pojemnosc
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: displacement_value
+                        hint_text: app.get_translation("provide_displacement")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("date_of_purchase")
+                        id: date_of_purchase_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_data
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: date_of_purchase_value
+                        hint_text: app.get_translation("provide_date_of_pur")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("fuel_type")
+                        id: fuel_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_paliwo
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: fuel_value
+                        hint_text: app.get_translation("provide_fuel_type")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("vin")
+                        id: vin_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_vin
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: vin_value
+                        hint_text: app.get_translation("provide_vin")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+            BoxLayout:
+                pos_hint: {"x": 0.0, "top": 1} if not pojazdy.active else {"x": 1.0, "top": 0}
+                size_hint: 1, 1
+                orientation: 'vertical'
+                spacing: dp(10)
+                opacity: 1 if naprawy.active else 0
+                disabled: not naprawy.active
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("repair_type")
+                        id: type_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_rodzaj
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: type_value
+                        hint_text: app.get_translation("provide_type")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("cost")
+                        id: cost_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_koszt
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: cost_value
+                        hint_text: app.get_translation("provide_cost")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("mileage")
+                        id: mileage_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_przebieg
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        id: mileage_value
+                        hint_text: app.get_translation("provide_mileage")
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("repair_date")
+                        id: repair_date_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_data
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        hint_text: app.get_translation("provide_date")
+                        id: repair_date_value
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+                BoxLayout:
+                    orientation: 'horizontal'
+                    spacing: dp(8)
+
+                    Label:
+                        text: app.get_translation("part_number")
+                        id: part_number_text
+                        size_hint_x: None
+                        width: dp(120)
+                        color: 0.9, 1, 0.92, 1
+
+                    Spinner:
+                        text: "Operator"
+                        values: ["=", "!=", ">", "<", ">=", "<="]
+                        id: operator_kod
+                        background_normal: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        color: app.accent_color
+
+                    TextInput:
+                        hint_text: app.get_translation("provide_part_number")
+                        id: part_number_value
+                        multiline: False
+                        background_normal: ""
+                        background_active: ""
+                        background_color: 0.01, 0.01, 0.01, 1
+                        foreground_color: app.accent_color
+                        hint_text_color: 0.4, 0.5, 0.43, 1
+                        cursor_color: app.accent_color
+                        padding: dp(12), dp(8)
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(8)
+
+        Button:
+            size_hint: 1, 0.05
+            id: button_generate
+            text: app.get_translation("generate")
+            background_normal: ""
+            background_color: app.accent_color
+            color: 0.02, 0.05, 0.03, 1
+            font_size: "18sp"
+            bold: True
+            on_press: root.generuj()
+
+            canvas.after:
+                Color:
+                    rgba: app.accent_color
+                Line:
+                    width: 1.2
+                    rounded_rectangle:
+                        self.x, self.y, self.width, self.height, dp(10)
+
+        Button:
+            size_hint: 1, 0.05
+            id: button_cancel
+            text: app.get_translation("cancel")
+            background_normal: ""
+            background_color: 0.01, 0.01, 0.01, 1
+            color: 0.9, 1, 0.92, 1
+            font_size: "18sp"
+            bold: True
+            on_press: root.GetBack()
+
+            canvas.after:
+                Color:
+                    rgba: app.accent_color
+                Line:
+                    width: 1.2
+                    rounded_rectangle:
+                        self.x, self.y, self.width, self.height, dp(10)

@@ -1,0 +1,362 @@
+<CarDetailsScreen>:
+    canvas.before:
+        Color:
+            rgba: 0.035, 0.045, 0.04, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "horizontal"
+        padding: dp(20)
+        spacing: dp(20)
+
+        # =========================
+        # LEWA STRONA
+        # =========================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: 0.4
+            spacing: dp(15)
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: 0.6
+                padding: dp(10)
+
+                BoxLayout:
+                    orientation: "horizontal"
+
+                    Image:
+                        id: car_photo
+                        allow_stretch: True
+                        keep_ratio: True
+
+                        canvas.before:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(12)
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_y: 0.4
+                spacing: dp(10)
+
+                BoxLayout:
+                    Button:
+                        id: button_edit
+                        text: app.get_translation("edit")
+                        background_normal: ""
+                        background_color: 0.055, 0.07, 0.06, 1
+                        color: app.accent_color
+                        bold: True
+                        font_size: "16sp"
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(10)
+
+                BoxLayout:
+                    Button:
+                        id: button_repairs
+                        text: app.get_translation("repairs")
+                        background_normal: ""
+                        background_color: 0.055, 0.07, 0.06, 1
+                        color: app.accent_color
+                        bold: True
+                        font_size: "16sp"
+                        on_release: root.ShowRepairs()
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(10)
+
+                BoxLayout:
+                    Button:
+                        id: button_car_delete
+                        text: app.get_translation("delete_car")
+                        background_normal: ""
+                        background_color: 0.055, 0.07, 0.06, 1
+                        color: 1, 0.35, 0.35, 1
+                        bold: True
+                        font_size: "16sp"
+                        on_release: root.DeleteCar()
+
+                        canvas.after:
+                            Color:
+                                rgba: 0.7, 0.2, 0.2, 1
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(10)
+
+                BoxLayout:
+                    Button:
+                        id: button_cancel
+                        text: app.get_translation("cancel")
+                        background_normal: ""
+                        background_color: 0.055, 0.07, 0.06, 1
+                        color: 0.9, 1, 0.92, 1
+                        bold: True
+                        font_size: "16sp"
+
+                        canvas.after:
+                            Color:
+                                rgba: app.accent_color
+                            Line:
+                                width: 1.2
+                                rounded_rectangle:
+                                    self.x, self.y, self.width, self.height, dp(10)
+
+        # =========================
+        # PRAWA STRONA - DANE
+        # =========================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_x: 0.6
+            padding: dp(10)
+            spacing: dp(10)
+
+            # Rejestracja
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("reg_number")
+                    id: reg_number_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: reg_number_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)
+
+            # Marka
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("make")
+                    id: make_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: mark_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)
+
+            # Model
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("model")
+                    id: model_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: model_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)
+
+            # VIN
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("vin")
+                    id: vin_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: vin_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)
+
+            # Pojemność
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("displacement")
+                    id: displacement_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: displacement_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)
+
+            # Data zakupu
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("date_of_purchase")
+                    id: date_of_pur_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: year_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)
+
+            # Paliwo
+            BoxLayout:
+                orientation: "horizontal"
+                spacing: dp(15)
+
+                Label:
+                    color: 0.9, 1, 0.92, 1
+                    text: app.get_translation("fuel_type")
+                    id: fuel_type_text
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                TextInput:
+                    id: fuel_type_value
+                    disabled: True
+                    background_color: 0.01, 0.01, 0.01, 1
+                    disabled_foreground_color: app.accent_color
+                    background_normal: ""
+                    background_active: ""
+                    foreground_color: app.accent_color
+                    halign: "right"
+                    valign: "middle"
+                    text_size: self.size
+
+                    canvas.after:
+                        Color:
+                            rgba: app.accent_color
+                        Line:
+                            width: 1.2
+                            rounded_rectangle:
+                                self.x, self.y, self.width, self.height, dp(10)

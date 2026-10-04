@@ -1,0 +1,114 @@
+<RepairsScreen>:
+    BoxLayout:
+
+        canvas.before:
+            Color:
+                rgba: 0.035, 0.045, 0.04, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        orientation: "vertical"
+
+        BoxLayout:
+            size_hint: 1, 0.15
+            padding: dp(10)
+
+            Label:
+                background_color: 0, 0, 0, 0
+                color: app.accent_color
+                font_size: "24sp"
+                bold: True
+                id: repairs_title_text
+                text: app.get_translation("repairs_for_this_car")
+                halign: "center"
+                valign: "middle"
+                text_size: self.size
+
+                canvas.before:
+                    Color:
+                        rgba: 0.01, 0.01, 0.01, 1
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                        radius: [dp(10)]
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+        BoxLayout:
+            size_hint: 1, 0.1
+            padding: dp(10), dp(5)
+
+            TextInput:
+                background_normal: ""
+                background_active: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                foreground_color: app.accent_color
+                hint_text_color: 0.5, 0.6, 0.53, 1
+                cursor_color: app.accent_color
+                id: input
+                hint_text: app.get_translation("search")
+                on_text: root.SearchRepair(self.text)
+                padding: dp(10), dp(8)
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(8)
+
+        RepairsPanel:
+            data: root.data
+
+        BoxLayout:
+            size_hint: 1, 0.1
+            orientation: "horizontal"
+            padding: dp(10)
+            spacing: dp(10)
+
+            Button:
+                #disabled: app.role == "Przegladacz"
+                background_normal: ""
+                background_down: ""
+                background_color: app.accent_color
+                color: 0.02, 0.05, 0.03, 1
+                font_size: "18sp"
+                bold: True
+                text: app.get_translation("add_repair")
+                id: button_add_repair
+                on_press: root.OpenAddRepairWindow()
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
+
+            Button:
+                background_normal: ""
+                background_down: ""
+                background_color: 0.01, 0.01, 0.01, 1
+                color: 0.9, 1, 0.92, 1
+                font_size: "18sp"
+                bold: True
+                text: app.get_translation("cancel")
+                id: button_cancel
+                on_press: root.GetBack()
+
+                canvas.after:
+                    Color:
+                        rgba: app.accent_color
+                    Line:
+                        width: 1.2
+                        rounded_rectangle:
+                            self.x, self.y, self.width, self.height, dp(10)
